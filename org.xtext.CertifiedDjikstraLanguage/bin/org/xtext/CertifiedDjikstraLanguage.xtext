@@ -1,0 +1,65 @@
+grammar org.xtext.CertifiedDjikstraLanguage with org.eclipse.xtext.common.Terminals
+
+generate certifiedDjikstraLanguage "http://www.xtext.org/CertifiedDjikstraLanguage"
+
+Module hidden(WS, ML_COMMENT, SL_COMMENT):
+	declarations += DocDeclaration*
+;
+
+DocDeclaration:
+	(doc = CDL_DOC)?
+	declaration = Declaration
+;
+
+Declaration:
+	Instantiation | Transformation
+;
+
+Transformation:
+	"Transformation"
+	body = TransformationBody
+;
+
+terminal CDL_DOC:
+	"(**" -> "*)"
+;
+
+TransformationBody:
+	"o->" graph = GraphOrDecl "," root = RootOrDecl
+;
+
+GraphOrDecl:
+	({GraphDecl} graphDecl = [GraphInstantiation])| ({Graph} graph = Graph)
+;
+
+RootOrDecl:
+	({RootDecl} rootDecl = [RootInstantiation]) | ({Root} root = Root)
+;
+
+Instantiation:
+	GraphInstantiation | RootInstantiation 
+;
+
+GraphInstantiation:
+	name = ID ":=" graph = Graph
+;
+
+RootInstantiation:
+	name = ID ":=" root = Root
+;
+
+Root:
+	"R" {Root} val = Vertex
+;
+
+Graph:
+	"G" {Graph} arcs += Triplet+
+;
+
+Triplet:
+	{Triplet} "(" x = Vertex "," y = Vertex "," z = Vertex ")"
+;
+
+Vertex:
+	value = INT
+;
