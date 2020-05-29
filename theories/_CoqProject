@@ -1,0 +1,44 @@
+-I .
+-R . Logique
+
+# LOGIQUE
+	# Utilitaires
+
+	preambule_nat.v
+	preambule_liste.v
+	PrefixesSuffixes.v
+	PrefixesSuffixesMeta.v
+	Egalite.v
+
+	# Molecules (Définitions & Meta)
+
+	Molecules.v
+	MoleculesMeta.v
+
+	# Réactions & Transformations (Définitions & Meta)
+
+	ReactionsTransformations.v
+	ReactionsTransformationsMeta.v
+
+	# Tests sur la partie logique
+
+	# TestsLogique.v
+
+
+
+# APPLICATIONS
+
+	# TactiquesParcours.v
+	# parcoursSansCandidat.v
+	# parcoursAvecCandidatSansListe.v
+	# parcoursAvecCandidat.v
+
+	TactiquesParcoursContraint.v
+	# parcoursSansCandidatContraint.v
+	parcoursAvecCandidatSansListeContraint.v
+	DjikstraCalculatoire.v
+
+	# parcoursAvecCandidatContraint.v
+	# ParcoursSansCandidatContraintGénérique.v
+
+
