@@ -104,7 +104,22 @@ and a few properties on it, but we are still struggling with the final case's so
 
 ### Focus on the constrained version
 
-TODO
+For this topic, we wanted to be able to duplicate indefinetely rules and then be able to eliminate them once we think we're done, given a few stopping conditions.  
+To do so, we used **CoFixpoints**. First, we introduce a basic exponential rule as :
+```Coq
+Definition exponentielDeterministe{A : Type}(r : @Regle A) : @Regle A.
+  cofix E.
+  exact (neutral ∧ (r ⊠ E)).
+Defined.
+```
+This is actually not constrained, but there is actually a simple way to have a **"conditional" neutral**, which is :
+```Coq
+CoFixpoint Rule :=
+  (∀_m Y, (g ? Y -o Y))
+  ∧
+  (r ⊠ Rule).
+```
+where ```(g:Prop)``` is the condition to check to be able to eliminate the rule (if ```g```, then identity rule), and if we cannot, then we produce one rule ```r``` (the infinitely produced rule) and another cofix ```Rule```.
 
 ## Compiler
 
