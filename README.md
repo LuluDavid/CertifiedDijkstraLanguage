@@ -44,7 +44,7 @@ Basically, the rules to show **molecular equivalence** are :
   * The cut
   * The left an right conjunction
 
-TODO: PICTURE
+<img src = "https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/pictures/EqMoleculaire.png" width="500" height="250" style="display: block; margin: 0 auto;">
 
 Finally, in order to decide if we can apply some graph rules, we defined a simple notion of Absence on our molecules,
 which would be like a ~In _ _ which is true if an atom does not appear inside a Molecule. This inductive property is
@@ -67,7 +67,8 @@ Reaction := g ? M1 -o M2, Rule
 
 We then specified how to transform molecules thanks to rules with the following inference rules :
 
-TODO: PICTURE
+<img style="display: block; margin: 0 auto;"
+src = "https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/pictures/TransfRules.png">
 
 For this purpose, we relied on a **shallow embedding** (Coq's forall and cofix).
 
