@@ -22,6 +22,10 @@ This work is divided into two main parts :
 
 I have written a whole report in french about it at the [following adress](https://drive.google.com/file/d/1M0zz_e-NL7pd5JiK6T-ITOtcgp3rFt5z/view?usp=sharing).
 
+Here is the dependency graph for clearer understanding :
+
+<p align="center"><img height = 800 src="https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/theories/dependency_graph.png"></p>
+
 ## Theories
 
 ### Molecules
@@ -44,7 +48,7 @@ Basically, the rules to show **molecular equivalence** are :
   * The cut
   * The left an right conjunction
 
-<img src = "https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/pictures/EqMoleculaire.png" width="500" height="250" style="display: block; margin: 0 auto;">
+<p align="center"><img src = "https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/pictures/EqMoleculaire.png" width="500" style="display: block; margin: 0 auto;"></p>
 
 Finally, in order to decide if we can apply some graph rules, we defined a simple notion of Absence on our molecules,
 which would be like a ~In _ _ which is true if an atom does not appear inside a Molecule. This inductive property is
@@ -67,8 +71,7 @@ Reaction := g ? M1 -o M2, Rule
 
 We then specified how to transform molecules thanks to rules with the following inference rules :
 
-<img style="display: block; margin: 0 auto;"
-src = "https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/pictures/TransfRules.png">
+<p align="center"><img src = "https://github.com/LuluDavid/CertifiedDjikstraLanguage/blob/master/pictures/TransfRules.png"></p>
 
 For this purpose, we relied on a **shallow embedding** (Coq's forall and cofix).
 
