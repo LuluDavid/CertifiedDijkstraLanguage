@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Lsp4e
+Bundle-SymbolicName: web.CertifiedDjikstraLanguage.lsp4e
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: web.certifieddjikstralanguage.lsp4e.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.lsp4e;bundle-version="0.13.0",
+ org.eclipse.lsp4j;bundle-version="0.9.0",
+ org.eclipse.lsp4j.jsonrpc;bundle-version="0.9.0",
+ org.eclipse.jdt.annotation;bundle-version="2.2.400"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: web.CertifiedDjikstraLanguage.lsp4e
+Bundle-ActivationPolicy: lazy

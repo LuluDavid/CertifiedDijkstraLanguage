@@ -1,0 +1,5 @@
+include 'web.CertifiedDjikstraLanguage'
+include 'web.CertifiedDjikstraLanguage.ide'
+include 'web.CertifiedDjikstraLanguage.tests'
+include 'vscode-cdl-extension'
+include 'theia-cdl-extension'

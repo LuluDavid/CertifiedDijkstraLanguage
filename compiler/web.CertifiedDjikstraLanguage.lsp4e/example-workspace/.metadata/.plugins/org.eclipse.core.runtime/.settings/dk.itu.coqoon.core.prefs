@@ -1,0 +1,6 @@
+coqpath=/Users/luciendavid/.opam/default/bin
+debug.model=false
+debug.profiling=false
+debug.project=false
+eclipse.preferences.version=1
+usequick=true

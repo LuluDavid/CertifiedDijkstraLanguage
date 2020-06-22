@@ -1,0 +1,6 @@
+Graph := G (1, 2, 4) (1, 4, 1) (1, 5, 2) (4, 5, 2) (4, 6, 3) 
+		   (5, 6, 1) (5, 3, 0) (3, 2, 3) (4, 2, 4) // Define the graph Arcs
+
+Root := R 1 // Adds the candidate (1, 1, 0) to begin
+
+Transformation o-> Graph, Root // Generate the table for graph Graph with root Root
