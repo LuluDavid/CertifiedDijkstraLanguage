@@ -1,4 +1,4 @@
-Require Import parcoursAvecCandidatSansListeContraint TactiquesParcoursContraint DjikstraCalculatoire.
+Require Import dijkstra tactics dijkstra_compute.
 
 Import Pondéré.
 
@@ -8,11 +8,12 @@ Definition Graph := g 1 2 4 ⊗ g 1 4 1 ⊗ g 1 5 2 ⊗ g 4 5 2 ⊗ g 4 6 3 ⊗ 
 
 Definition Root := 1.
 
+(** TODO: The two following functions should be hidden somehow *)
 
-(** Djikstra's final table *)
+(** Dijkstra's final table *)
 Definition FinalTableGraph := snd (Djikstra Root Graph).
 
-(** Djikstra's arc generation tactic*)
+(** Dijkstra's arc generation tactic*)
 Ltac generationTacticGraph := addArcs (fst(Djikstra Root Graph)) (MoleculeToTriplets FinalTableGraph).
 
 (** Simple transformation test from Graph to FinalTableGraph *)
@@ -34,4 +35,6 @@ Proof.
 	ConclureCandidat1.
 	ConclureCandidat2.
 Qed.
+
+(** The tests should be in a small CI *)
 

@@ -6,39 +6,22 @@
 
 	preambule_nat.v
 	preambule_liste.v
-	PrefixesSuffixes.v
-	PrefixesSuffixesMeta.v
-	Egalite.v
+	prefixes_suffixes.v
+	prefixes_suffixes_meta.v
+	egalite.v
 
 	# Molecules (Définitions & Meta)
 
-	Molecules.v
-	MoleculesMeta.v
+	molecules.v
+	molecules_meta.v
 
 	# Réactions & Transformations (Définitions & Meta)
 
-	ReactionsTransformations.v
-	ReactionsTransformationsMeta.v
-
-	# Tests sur la partie logique
-
-	# TestsLogique.v
-
-
+	reactions_transformations.v
+	reactions_transformations_meta.v
 
 # APPLICATIONS
 
-	# TactiquesParcours.v
-	# parcoursSansCandidat.v
-	# parcoursAvecCandidatSansListe.v
-	# parcoursAvecCandidat.v
-
-	TactiquesParcoursContraint.v
-	# parcoursSansCandidatContraint.v
-	parcoursAvecCandidatSansListeContraint.v
-	DjikstraCalculatoire.v
-
-	# parcoursAvecCandidatContraint.v
-	# ParcoursSansCandidatContraintGénérique.v
-
-
+	tactics.v
+	dijkstra.v
+	dijkstra_compute.v

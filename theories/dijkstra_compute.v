@@ -1,4 +1,4 @@
-Require Import List Nat Bool Egalite Omega.
+Require Import List Nat Bool egalite Omega.
 Import ListNotations.
 
 
@@ -93,7 +93,7 @@ Fixpoint ConsumeCandidates(graph candidates table : @list Triplet)(overflow : na
 Definition DjikstraTriplets(root:nat)(l:@list Triplet) : (@list Triplet)*(@list Triplet) := 
   ConsumeCandidates l [(root, root, 0)][] overflow.
 
-Require Import parcoursAvecCandidatSansListeContraint Molecules.
+Require Import dijkstra molecules.
 Import Pondéré.
 
 Definition AtomeToTriplet(atome : At) := 
@@ -132,7 +132,7 @@ Fixpoint findFirst{A:Type} (l:list A)(f:A -> bool) :=
 Definition previousCovered (t:Triplet)(a':nat) : bool :=
   let (x,c) := t in let (a,b) := x in b =? a'.
 
-Require Import TactiquesParcoursContraint.
+Require Import tactics.
 
 Ltac addArcsRec l triplets :=
   match l with

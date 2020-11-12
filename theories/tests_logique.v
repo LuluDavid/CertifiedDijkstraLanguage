@@ -1,4 +1,4 @@
-Require Export ReactionsTransformations ReactionsTransformationsMeta.
+Require Export reactions_transformations reactions_transformations_meta.
 
 Import ListNotations.
 

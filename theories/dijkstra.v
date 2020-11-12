@@ -1,5 +1,5 @@
-Require Import TactiquesParcoursContraint.
-Require Import List Nat Bool Egalite Omega.
+Require Import tactics.
+Require Import List Nat Bool egalite Omega.
 Import ListNotations.
 
 Local Open Scope eqb_scope.
