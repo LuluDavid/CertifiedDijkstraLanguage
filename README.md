@@ -1,5 +1,63 @@
 # CertifiedDjikstraLanguage
 
+## Final results
+
+With this tool, you will be able to automatize the processing of formally proven algorithms. To illustrate with 
+Dijkstra's algorithm, we have been able to write minimal theorems such as :
+
+```Coq
+Definition Graph := g 1 2 4 ⊗ g 1 4 1 ⊗ g 1 5 2 ⊗ g 4 5 2 ⊗ g 4 6 3 ⊗ g 5 6 1 ⊗ g 5 3 0 ⊗ g 3 2 3 ⊗ g 4 2 4.
+
+Definition Root := 1.
+
+Theorem test : ProveDijkstra Graph Root.
+Proof.
+  TacticDijkstra Graph Root.
+Qed.
+```
+To compute the final graph produced by the algorithm on ```Graph```, beginning at ```Root```, while providing 
+a formal proof of its result ensuring few properties on the algorithm (this part needs to be enriched actually), and
+providing feedback on the way the algorithm is proven :
+```
+COQC dijkstra_compute.v
+
+Final reached graph is 
+[(1, 1, 0); (1, 2, 4); (1, 4, 1); (1, 5, 2); (4, 6, 4); (5, 3, 2); (5, 6, 3)]
+Generating automatically the arcs with Djikstra
+
+Generate candidate C  1 2 4  from T  1 1 0
+
+Generate vertice T  1 2 4
+
+Generate candidate C  1 4 1  from T  1 1 0
+
+Generate vertice T  1 4 1
+
+Generate candidate C  1 5 2  from T  1 1 0
+
+Generate vertice T  1 5 2
+
+Generate candidate C  5 3 2  from T  1 5 2
+
+Generate vertice T  5 3 2
+
+Generate candidate C  5 6 3  from T  1 5 2
+
+Generate vertice T  5 6 3
+
+No more arcs to generate
+
+Molecule under normal form
+
+There is/are 2 guard constraint(s) to solve.
+
+Constraints solved : every arc has already generated a covered vertice or a current candidate.
+
+Cannot solve constraints
+
+Constraints solved : every new generated candidate would have a bigger ponderation than in the current state
+```
+
 ## Which initial problem ?
 
 This work was initiated because **graph algorithms** and more generally algorithms (which are often 
@@ -124,27 +182,3 @@ CoFixpoint Rule :=
   (r ⊠ Rule).
 ```
 where ```(g:Prop)``` is the condition to check to be able to eliminate the rule (if ```g```, then identity rule), and if we cannot, then we produce one rule ```r``` (the infinitely produced rule) and another cofix ```Rule```.
-
-## Compiler
-
-The initial goal was to introduce a clearer vision of algorithms, but it eventually became (as often in Coq) quite complicated to visualize the simple process. That's why I decided to introduce a **small DSL in Xtext** to simplify everything a bit.  
-
-The current version if really simple : I introduced a definition of Djikstra's algorithm which is quite close to our logical formulation, which calculates the Djikstra table from a graph and its root (there is a constant overflow parameter to cap its number of iterations, but we could :
-  1. Find and expose a decreasing argument, or ...
-  2. ... calculate a sup instead of a constant which would depend on the graph's size and degree).  
-
-The function also returns the order of candidate generation to be able to compute a tactic which will help to prove the generation of the table.
-
-So basically, in the DSL, you juste need to write something like that :
-```Xtext
-Graph := G (1, 2, 4) (1, 4, 1) (1, 5, 2) (4, 5, 2) (4, 6, 3) 
-		   (5, 6, 1) (5, 3, 0) (3, 2, 3) (4, 2, 4) // Define the graph Arcs
-
-Root := R 1 // Adds the candidate (1, 1, 0) to begin
-
-Transformation o-> Graph, Root // Generate the table for graph Graph with root Root
-```
-
-And the DSL generates a small file which is intended to be compiled straight in theories. I used idtac to display all the information you need to know about the table generation, and all of this ensuring several properties while doing it.
-
-To be continued...
