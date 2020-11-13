@@ -1,8 +1,8 @@
 -I .
 -R . Logique
 
-# LOGIQUE
-	# Utilitaires
+# LOGICAL FOUNDATIONS
+	# Utils
 
 	preambule_nat.v
 	preambule_liste.v
@@ -20,7 +20,7 @@
 	reactions_transformations.v
 	reactions_transformations_meta.v
 
-# APPLICATIONS
+# APPLICATION TO DIJKSTRA
 
 	tactics.v
 	dijkstra.v

@@ -1,7 +1,6 @@
 Require Import List Nat Bool egalite Omega.
 Import ListNotations.
 
-
 (** Compute Djikstra's final table *)
 
 Definition Triplet :Type := nat*nat*nat.
@@ -117,7 +116,7 @@ Fixpoint TripletsToTable(list : @list Triplet): (@Molecule At) :=
   |(a,b,n) :: list' => TripletsToTable list' ⊗ (t a b n)
   end.
 
-Definition Djikstra(root:nat)(M:@Molecule At): (@list Triplet)*(@Molecule At) := 
+Definition Dijkstra(root:nat)(M:@Molecule At): (@list Triplet)*(@Molecule At) := 
   let calculation := (DjikstraTriplets root (MoleculeToTriplets M)) in 
   (fst calculation, TripletsToTable (snd calculation)).
 
@@ -157,42 +156,38 @@ Ltac addArcs candidates triplets :=
   |(?a,?b,?n) :: ?l  => addArcsRec l triplets
   end.
 
+Require Import dijkstra.
+Import Pondéré.
 
+Definition ProveDijkstra Graph Root := 
+  let pair := (Dijkstra Root Graph) in
+  let FinalTableGraph := snd pair in
+  Transformation règles (Graph ⊗ t Root Root 0)(Graph ⊗ FinalTableGraph).
 
+Ltac TacticDijkstra Graph Root :=
+  (** Compute Final Graph and its associated tactic *)
+  unfold ProveDijkstra;
+  remember (Dijkstra Root Graph) as c eqn:Hc; cbv in Hc;
+  remember (fst c) as p eqn:Hp; remember (snd c) as fg eqn:Hfg; 
+  rewrite Hc in Hp, Hfg; cbv in Hp, Hfg; clear Hc;
+  rewrite Hfg;
+  (** Run the custom tactic *)
+  match goal with
+  | Hp: _ = ?x, Hfg : _ = ?y |- _ => idtac "Final reached graph is "x; addArcs x (MoleculeToTriplets y)
+  end;
+	(** Check the final constraints *)
+	ChoisirNeutrePartout;
+	ConclureCandidat1;
+	ConclureCandidat2.
 
+Definition Graph := g 1 2 4 ⊗ g 1 4 1 ⊗ g 1 5 2 ⊗ g 4 5 2 ⊗ g 4 6 3 ⊗ g 5 6 1 ⊗ g 5 3 0 ⊗ g 3 2 3 ⊗ g 4 2 4.
 
+Definition Root := 1.
 
-(** Tests 
-
- 
-(* DONE *)
-Compute MoleculeToTriplets grapheSimple.
-
-Definition triplets := MoleculeToTriplets grapheSimple.
-
-(* DONE *)
-Compute GenerateCandidates (1,1,0) triplets [] [].
-
-Compute GenerateCandidates (1,2,1) triplets [] [].
-
-(* *)
-
-Compute removeMin [(1, 2, 1); (1, 3, 4)].
-
-(* (Some (1, 2, 1), [(1, 3, 4)]) *)
-
-Compute (GenerateCandidates (1,2,1) triplets [(1,3,4)] [(1,1,0)]).
-
-Compute ConsumeCandidates triplets [(1,1,0)] [] 3.
-
-Compute (Djikstra 1 grapheSimple). (* Should also have 2 3 3 *)
-
-
-(* Final validation on the big example *)
-
-Compute Djikstra 1 graphe6Sommets. (* expecting t 1 1 0 ⊗ t 1 2 4 ⊗ t 1 4 1 ⊗ t 1 5 2 ⊗ t 5 6 3 ⊗ t 5 3 2 *) 
-
-*)
+Theorem test : ProveDijkstra Graph Root.
+Proof.
+  TacticDijkstra Graph Root.
+Qed.
 
 
 
