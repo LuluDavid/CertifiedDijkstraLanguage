@@ -1,4 +1,4 @@
-Require Export Molecules.
+Require Export molecules.
 
 Import ListNotations.
 

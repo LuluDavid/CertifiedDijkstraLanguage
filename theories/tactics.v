@@ -1,4 +1,4 @@
-Require Export Egalite ReactionsTransformations ReactionsTransformationsMeta.
+Require Export egalite reactions_transformations reactions_transformations_meta.
 Require Import List Nat Omega.
 Import ListNotations.
 

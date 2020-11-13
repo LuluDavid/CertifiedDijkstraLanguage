@@ -1,4 +1,4 @@
-Require Export PrefixesSuffixes.
+Require Export prefixes_suffixes.
 
 Import ListNotations.
 
