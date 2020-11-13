@@ -1,0 +1,27 @@
+-I .
+-R . Logique
+
+# LOGICAL FOUNDATIONS
+# utils
+theories/preambule_nat.v
+theories/preambule_liste.v
+theories/prefixes_suffixes.v
+theories/prefixes_suffixes_meta.v
+theories/egalite.v
+
+# molecules (definitions & meta)
+theories/molecules.v
+theories/molecules_meta.v
+
+# reactions & transformations (definitions & meta)
+
+theories/reactions_transformations.v
+theories/reactions_transformations_meta.v
+
+# tactics
+theories/tactics.v
+
+# APPLICATION TO DIJKSTRA
+
+examples/dijkstra/dijkstra.v
+examples/dijkstra/dijkstra_compute.v
